@@ -3,12 +3,14 @@ defmodule Zoy.Router do
   Root router for Zohy web server
   """
 
+  use Sentry.PlugCapture
   use Plug.Router
 
   alias Zoy.Router.{Util, Routes}
 
   plug :match
   plug :dispatch
+  plug Sentry.PlugContext
 
   get "/" do
     Util.respond(conn, {:ok, "Hello World!"})

@@ -3,6 +3,7 @@ defmodule Zoy.Router.Routes.V1 do
   Routes for /v1
   """
 
+  use Sentry.PlugCapture
   use Plug.Router
 
   alias Zoy.API
@@ -10,6 +11,7 @@ defmodule Zoy.Router.Routes.V1 do
 
   plug :match
   plug :dispatch
+  plug Sentry.PlugContext
 
   plug Corsica,
     origins: "*",

@@ -3,12 +3,14 @@ defmodule Zoy.Router.Routes.Socket do
   Router for the gateway
   """
 
+  use Sentry.PlugCapture
   use Plug.Router
 
   alias Zoy.Router.Util
 
   plug :match
   plug :dispatch
+  plug Sentry.PlugContext
 
   ## Upgrade to websocket connection
   get "/" do

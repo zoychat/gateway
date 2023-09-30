@@ -8,6 +8,8 @@ defmodule Zoy do
   require Logger
 
   def start(_type, _args) do
+    if Mix.env() == :prod, do: Logger.add_backend(Sentry.LoggerBackend)
+
     http_port = Application.get_env(:zoy, :http_port)
 
     children = [

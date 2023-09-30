@@ -3,6 +3,7 @@ defmodule Zoy.API.Health do
   Health route
   """
 
+  use Sentry.PlugCapture
   use Plug.Router
 
   require Logger
@@ -11,6 +12,7 @@ defmodule Zoy.API.Health do
 
   plug :match
   plug :dispatch
+  plug Sentry.PlugContext
 
   ## Returns a 200 OK response
   get "/" do
